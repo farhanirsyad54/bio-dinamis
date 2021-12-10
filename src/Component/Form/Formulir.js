@@ -4,30 +4,26 @@ import NavComponent from "./NavComponent";
 import Kartu from "../Card/kartu";
 
 function Formulir() {
-  const [name, setName] = useState("");
-  const [job, setJob] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
+  const form = {
+    nama: "",
+    job: "",
+    phone: "",
+    email: "",
+  };
+
   const [ava, setAva] = useState("");
-  const [profile, setProfile] = useState([]);
+  const [{ nama, job, phone, email }, setForm] = useState(form);
+  const [data, setData] = useState([]);
   const [openModal, setOpen] = useState(false);
 
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setForm((prevState) => ({ ...prevState, [name]: value }));
+  };
   const handleReset = (event) => {
-    setProfile([]);
+    setData([]);
     setOpen(false);
-  };
-
-  const handleName = (event) => {
-    setName(event.target.value);
-  };
-  const handleJob = (event) => {
-    setJob(event.target.value);
-  };
-  const handlePhone = (event) => {
-    setPhone(event.target.value);
-  };
-  const handleEmail = (event) => {
-    setEmail(event.target.value);
+    window.location.reload();
   };
 
   const avahandle = (event) => {
@@ -39,7 +35,7 @@ function Formulir() {
   const handleAva = (event) => {
     if (event.target.files.length > 0) {
       let src = URL.createObjectURL(event.target.files[0]);
-      setAva({
+      setData({
         ...ava,
         [event.target.name]: src,
       });
@@ -49,7 +45,14 @@ function Formulir() {
   const handleSubmit = (event) => {
     event.preventDefault();
     setOpen(true);
-    setProfile([...profile, { id: profile.length + 1, name, job, phone, email, ava }]);
+    setData([...data, { id: data.length + 1, nama: nama, job: job, phone: phone, email: email, ava: ava }]);
+    setForm({
+      nama: "",
+      job: "",
+      phone: "",
+      email: "",
+    });
+    setAva();
   };
 
   const closeHandle = (event) => {
@@ -62,7 +65,7 @@ function Formulir() {
 
   return (
     <>
-      {openModal && <Kartu onClose={closeHandle} profile={profile} name={name} job={job} phone={phone} email={email} ava={ava} />}
+      {openModal && <Kartu onClose={closeHandle} data={data} nama={nama} job={job} phone={phone} email={email} ava={ava} />}
       <NavComponent />
       <div class="container mt-4">
         <Row>
@@ -76,19 +79,19 @@ function Formulir() {
             <Form onSubmit={handleSubmit}>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Name</Form.Label>
-                <Form.Control type="text" name="name" onChange={handleName} />
+                <Form.Control type="text" name="nama" value={nama} onChange={handleChange} />
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Position</Form.Label>
-                <Form.Control type="text" name="position" onChange={handleJob} />
+                <Form.Control type="text" name="job" value={job} onChange={handleChange} />
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Phone Number</Form.Label>
-                <Form.Control type="text" name="phone" onChange={handlePhone} />
+                <Form.Control type="text" name="phone" value={phone} onChange={handleChange} />
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Email Address</Form.Label>
-                <Form.Control type="text" name="email" onChange={handleEmail} />
+                <Form.Control type="text" name="email" value={email} onChange={handleChange} />
               </Form.Group>
               <Form.Group controlId="formFile" className="mb-3">
                 <Form.Label>Default file input example</Form.Label>

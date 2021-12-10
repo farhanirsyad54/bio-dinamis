@@ -7,17 +7,17 @@ const Kartu = (props) => {
       <Col>
         <div className="background">
           <CloseButton onClick={props.onClose} />
-          {props.profile.map((listProfile, index) => {
+          {props.data.map((listData, index) => {
             return (
               <Card className="kartu" key={index}>
                 <div className="upper-container">
-                  <img className="image-container" src={listProfile.ava} />
+                  <img className="image-container" src={listData.ava} />
                 </div>
                 <div className="lower-container">
-                  <h1>{listProfile.name} </h1>
-                  <h4>{listProfile.job} </h4>
-                  <h4>{listProfile.phone} </h4>
-                  <h4>{listProfile.email} </h4>
+                  <h1>{listData.nama} </h1>
+                  <h4>{listData.job} </h4>
+                  <h4>{listData.phone} </h4>
+                  <h4>{listData.email} </h4>
                 </div>
               </Card>
             );
