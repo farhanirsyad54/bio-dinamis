@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import Formulir from "./Component/Form/Formulir";
 import "bootstrap/dist/css/bootstrap.min.css";

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Col, Row, Button, Form } from "react-bootstrap";
 import NavComponent from "./NavComponent";
 import Kartu from "../Card/kartu";
+import Footer from "./Footer";
 
 function Formulir() {
   const form = {
@@ -11,10 +12,11 @@ function Formulir() {
     email: "",
   };
 
-  const [ava, setAva] = useState("");
+  const [ava, setAva] = useState();
   const [{ nama, job, phone, email }, setForm] = useState(form);
   const [data, setData] = useState([]);
   const [openModal, setOpen] = useState(false);
+  let src = "";
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -28,13 +30,13 @@ function Formulir() {
 
   const avahandle = (event) => {
     if (event.target.files.length > 0) {
-      let src = URL.createObjectURL(event.target.files[0]);
+      src = URL.createObjectURL(event.target.files[0]);
       setAva(src);
     }
   };
   const handleAva = (event) => {
     if (event.target.files.length > 0) {
-      let src = URL.createObjectURL(event.target.files[0]);
+      src = URL.createObjectURL(event.target.files[0]);
       setData({
         ...ava,
         [event.target.name]: src,
@@ -52,7 +54,6 @@ function Formulir() {
       phone: "",
       email: "",
     });
-    setAva();
   };
 
   const closeHandle = (event) => {
@@ -70,7 +71,7 @@ function Formulir() {
       <div class="container mt-4">
         <Row>
           <Col>
-            <h4>Isikan Data Diri Anda!</h4>
+            <h4>Please fill in your personal data</h4>
             <hr />
           </Col>
         </Row>
@@ -114,6 +115,7 @@ function Formulir() {
           </Col>
         </Row>
       </div>
+      <Footer className="text-center" />
     </>
   );
 }

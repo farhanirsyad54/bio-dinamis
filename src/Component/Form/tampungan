@@ -1,36 +1,36 @@
-  const [name, setName] = useState("");
-  const [job, setJob] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [ava, setAva] = useState("");
-  const [profile, setProfile] = useState([]);
-  const [data, setData] = useState([]);
-  const [openModal, setOpen] = useState(false);
+const [name, setName] = useState("");
+const [job, setJob] = useState("");
+const [phone, setPhone] = useState("");
+const [email, setEmail] = useState("");
+const [ava, setAva] = useState("");
+const [profile, setProfile] = useState([]);
+const [data, setData] = useState([]);
+const [openModal, setOpen] = useState(false);
 
-  const handleName = (event) => {
-    setName(event.target.value);
-  };
-  const handleJob = (event) => {
-    setJob(event.target.value);
-  };
-  const handlePhone = (event) => {
-    setPhone(event.target.value);
-  };
-  const handleEmail = (event) => {
-    setEmail(event.target.value);
-  };
-  const avahandle = (event) => {
-    if (event.target.files.length > 0) {
-      let src = URL.createObjectURL(event.target.files[0]);
-      setForm(src);
-    }
-  };
-  const handleAva = (event) => {
-    if (event.target.files.length > 0) {
-      let src = URL.createObjectURL(event.target.files[0]);
-      setData({
-        ...ava,
-        [event.target.name]: src,
-      });
-    }
-  };
+const handleName = (event) => {
+  setName(event.target.value);
+};
+const handleJob = (event) => {
+  setJob(event.target.value);
+};
+const handlePhone = (event) => {
+  setPhone(event.target.value);
+};
+const handleEmail = (event) => {
+  setEmail(event.target.value);
+};
+const avahandle = (event) => {
+  if (event.target.files.length > 0) {
+    let src = URL.createObjectURL(event.target.files[0]);
+    setForm(src);
+  }
+};
+const handleAva = (event) => {
+  if (event.target.files.length > 0) {
+    let src = URL.createObjectURL(event.target.files[0]);
+    setData({
+      ...ava,
+      [event.target.name]: src,
+    });
+  }
+};
